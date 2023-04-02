@@ -3,7 +3,8 @@ const {User} = require('../models');
 const {signToken} = require('../utils/auth');
 const { saveBook } = require('../controllers/user-controller');
 
-const resolvers={
+const resolvers = {
+    Query: {
     me:async (parent, args, context) => {
         if (context.User) {
             const userData = await User.findOne({_id: context.user._id}).select(
@@ -45,7 +46,7 @@ Mutation: {
             );
             return updateUser;
         }
-        thow new AuthenticationError("You need to be logged in!");
+        throw new AuthenticationError("You need to be logged in!");
     },
     removedBook: async (parent, {bookId}, context) => {
         if (context.user) {
