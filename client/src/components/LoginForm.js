@@ -2,29 +2,31 @@
 import React, { useEffect, useState } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
 
+import Auth from '../utils/auth';
+
 import {useMutation} from '@apollo/react-hooks';
 import { loginUser } from '../utils/mutations';
-import Auth from '../utils/auth';
 
 const LoginForm = () => {
   const [userFormData, setUserFormData] = useState({ email: '', password: '' });
   const [validated] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
 
-  const [login, {error}] = useMutation(loginUser);
+  const [loginUser, {error}] = useMutation(loginUser);
 
-  useEffect(() => {
-    if (error) setShowAlert(true);
-    else setShowAlert(false);
-  }, [error])
-
-  const handleInputChange = (event) => {
+  // useEffect(() => {
+  //   if (error) setShowAlert(true);
+  //   else setShowAlert(false);
+  // }, [error])
+  
+ const handleInputChange = (event) => {
     const { name, value } = event.target;
     setUserFormData({ ...userFormData, [name]: value });
   };
 
   const handleFormSubmit = async (event) => {
-    event.preventDefault();
+    event.pre
+ ventDefault();
 
     // check if form has everything (as per react-bootstrap docs)
     const form = event.currentTarget;
