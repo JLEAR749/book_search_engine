@@ -26,6 +26,7 @@ mutation addUser($username: String!, $password: String!, $email: String!) {
                 title
                 description
 
+            }
         }
     }
 }`;
