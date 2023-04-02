@@ -6,14 +6,13 @@ import {
   Row,
   Col
 } from 'react-bootstrap';
-
 import { getMe, deleteBook } from '../utils/API';
 import Auth from '../utils/auth';
 import { removeBookId } from '../utils/localStorage';
-import Auth from '../utils/auth';
-import {useQuery, useMutation} from '@appollo/react-hooks';
+import {useQuery, useMutation} from '@apollo/react-hooks';
+
 const SavedBooks = () => {
-  const [userData, setUserData] = useState({getMe});
+  const [LOADING, data] = useState({getMe});
   let userData = data?.me || {};
   console.log(userData);
   const [removeBookId] = useMutation(removeBookId);
