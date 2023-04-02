@@ -15,4 +15,5 @@ export const getItem = gql`
             link
         }
     }
-}`
+}
+`;
