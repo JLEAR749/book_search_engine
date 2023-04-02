@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
-
+import {useMutation} from '@appollo/react-hooks';
 import { createUser } from '../utils/API';
 import Auth from '../utils/auth';
 
@@ -11,6 +11,15 @@ const SignupForm = () => {
   const [validated] = useState(false);
   // set state for alert
   const [showAlert, setShowAlert] = useState(false);
+const [addUser, {error}] = useMutation(createUser);
+
+useEffect(() => {
+  if (error) {
+    setShowAlert(true);
+  } else {
+    setShowAlert(false);
+  }
+}, [error]);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;

@@ -10,9 +10,13 @@ import {
 import { getMe, deleteBook } from '../utils/API';
 import Auth from '../utils/auth';
 import { removeBookId } from '../utils/localStorage';
-
+import Auth from '../utils/auth';
+import {useQuery, useMutation} from '@appollo/react-hooks';
 const SavedBooks = () => {
-  const [userData, setUserData] = useState({});
+  const [userData, setUserData] = useState({getMe});
+  let userData = data?.me || {};
+  console.log(userData);
+  const [removeBookId] = useMutation(removeBookId);
 
   // use this to determine if `useEffect()` hook needs to run again
   const userDataLength = Object.keys(userData).length;

@@ -4,6 +4,33 @@ import SearchBooks from './pages/SearchBooks';
 import SavedBooks from './pages/SavedBooks';
 import Navbar from './components/Navbar';
 
+import {
+  ApolloClient, 
+  InMemoryCache, 
+  ApolloProvider,
+  createdHttpLink,
+} from '@apollo/client';
+import {setContext} from '@apollo/client/link/context';
+
+const httpLink = createdHttpLink({
+  url: '/graphql',
+});
+
+const authLink = setContext((_, {headers})=>{
+  const token = localStorage.getItem('id_token');
+  return {
+    headers: {
+      ...headers,
+      autorization: token ?  `Bearer ${token}` : "",
+    },
+  };
+});
+
+const client = new ApolloClient({
+  link:authLink.concat(httpLink),
+  cache: new InMemoryCache(),
+});
+
 function App() {
   return (
     <Router>
