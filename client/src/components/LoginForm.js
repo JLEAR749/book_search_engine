@@ -25,8 +25,7 @@ const LoginForm = () => {
   };
 
   const handleFormSubmit = async (event) => {
-    event.pre
- ventDefault();
+    event.preventDefault();
 
     // check if form has everything (as per react-bootstrap docs)
     const form = event.currentTarget;
