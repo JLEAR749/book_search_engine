@@ -1,6 +1,6 @@
-import gql from 'graphql-tag';
+import gql from '@apollo/client';
 
-export const getMe = gql`
+export const GET_ME = gql`
 {
     me{
         _id
